@@ -1,0 +1,86 @@
+---
+title: "Data Wrangleing Example"
+author: "Sami Boutros"
+date: "August 3, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introduction
+
+This is a report of how data was wrangled into RStudio from a table on a PDF report from the internet. This excersize was a way for me to practice data wrangling, report writing, and exporting to Github.  The wrangling of this exact table was already performed previously and exists in the 'dslabs' library in RStudio under "research_funding_rates".  I used this to test for accuracy of this code.  See the end of the report.
+
+Here is the link to the research funding rates report (known as the PDF moving forward) used at the time of this writing: http://www.pnas.org/content/suppl/2015/09/16/1510159112.DCSupplemental/pnas.201510159SI.pdf.
+
+I loaded the following:
+
+```{r loading-libs, message=FALSE, warning=FALSE, error=FALSE}
+library(pdftools)
+library(stringr)
+library(dplyr)
+library(readr)
+```
+
+### Pulling Text from the PDF
+
+First the PDF was downloaded from the URL into a temporary file.  The text data was extracted into RStudio and saved to an object 'txt'.  Then the temporary file was removed.
+
+```{r , warning=FALSE, error=FALSE, message=FALSE}
+temp_file <- tempfile()
+url <- "http://www.pnas.org/content/suppl/2015/09/16/1510159112.DCSupplemental/pnas.201510159SI.pdf"
+download.file(url, temp_file, mode = "wb")
+txt <- pdf_text(temp_file)
+file.remove(temp_file)
+```
+
+The 'txt' object created above contains all the text information from the entire PDF.  Only the data from the table on the second page of the PDF is needed for my scope of work.  
+
+```{r raw-data, message=FALSE, warning=FALSE, error=FALSE}
+raw_data_research_funding_rates <- txt[2]
+```
+
+### Wrangle Data into a List then Extract Column Names
+
+```{r list-extract, message=FALSE, warning=FALSE, error=FALSE}
+tab <- str_split(raw_data_research_funding_rates, "\n")
+tab <- tab[[1]]
+the_names_1 <- tab[3]
+the_names_2 <- tab[4]
+```
+
+### Trim and Condense Column names and values
+
+```{r trim-condense, message=FALSE, warning=FALSE, error=FALSE, tidy=TRUE}
+the_names_1 <- the_names_1 %>%
+  str_trim() %>%
+  str_replace_all(",\\s.", "") %>%
+  str_split("\\s{2,}", simplify = TRUE)
+the_names_2 <- the_names_2 %>%
+  str_trim() %>%
+  str_split("\\s+", simplify = TRUE)
+tmp_names <- str_c(rep(the_names_1, each = 3), the_names_2[-1], sep = "_")
+the_names <- c(the_names_2[1], tmp_names) %>%
+  str_to_lower() %>%
+  str_replace_all("\\s", "_")
+new_research_funding_rates <- tab[6:14] %>%
+  str_trim() %>%
+  str_split("\\s{2,}", simplify = TRUE) %>%
+  data.frame(stringsAsFactors = FALSE) %>%
+  setNames(the_names) %>%
+  mutate_at(-1, parse_number)
+```
+
+## Conclusion
+
+The 'dslabs' library in RStudio has this data frame already.  This wrangling excersize was a way for me to practice report writing and uploading to Github.  The below should be true to test for an accurate data frame:
+
+```{r test-check, message=FALSE, warning=FALSE, error=FALSE}
+library(dslabs)
+data("research_funding_rates")
+identical(research_funding_rates, new_research_funding_rates)
+```
+
+When I ran this code, the two objects were identical indicating success.
