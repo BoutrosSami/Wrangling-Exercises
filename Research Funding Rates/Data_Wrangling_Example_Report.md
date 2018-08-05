@@ -1,4 +1,4 @@
-# Wrangling Exercise: PDF from the We to RStudio
+# Wrangling Exercise: PDF from the Web to RStudio
 
 Introduction
 ------------
