@@ -49,4 +49,3 @@ library(dslabs)
 data("research_funding_rates")
 identical(research_funding_rates, new_research_funding_rates)
 print(new_research_funding_rates)
-
