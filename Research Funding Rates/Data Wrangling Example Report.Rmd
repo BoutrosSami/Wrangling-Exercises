@@ -75,7 +75,7 @@ new_research_funding_rates <- tab[6:14] %>%
 
 ## Conclusion
 
-The 'dslabs' library in RStudio has this data frame already.  This wrangling excersize was a way for me to practice report writing and uploading to Github.  The below should be true to test for an accurate data frame:
+The 'dslabs' library in RStudio has this data frame already.  This wrangling excersize was a way for me to practice report writing and uploading to Github.  The below should be true to test for an accurate list:
 
 ```{r test-check, message=FALSE, warning=FALSE, error=FALSE}
 library(dslabs)
@@ -83,4 +83,9 @@ data("research_funding_rates")
 identical(research_funding_rates, new_research_funding_rates)
 ```
 
-When I ran this code, the two objects were identical indicating success.
+When I ran this code, the two objects were identical indicating success. Here is the list:
+
+
+```{r print object, warning=FALSE, error=FALSE}
+print(new_research_funding_rates)
+```
