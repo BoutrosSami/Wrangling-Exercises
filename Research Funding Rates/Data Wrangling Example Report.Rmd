@@ -51,7 +51,7 @@ the_names_1 <- tab[3]
 the_names_2 <- tab[4]
 ```
 
-### Trim and Condense Column names and values
+### Trim and Condense Column Names and Values
 
 ```{r trim-condense, message=FALSE, warning=FALSE, error=FALSE, tidy=TRUE}
 the_names_1 <- the_names_1 %>%
