@@ -6,7 +6,7 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = FALSE)
 ```
 
 ## Introduction
@@ -86,6 +86,6 @@ identical(research_funding_rates, new_research_funding_rates)
 When I ran this code, the two objects were identical indicating success. Here is the list:
 
 
-```{r print object, warning=FALSE, error=FALSE}
+```{r print object, message=TRUE, warning=FALSE, error=FALSE}
 print(new_research_funding_rates)
 ```
