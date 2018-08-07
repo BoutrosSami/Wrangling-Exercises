@@ -1,18 +1,16 @@
-##   This is a an excersize in wrangling data provided from a pdf into RStudio and out to Github.
+##   This is a an exercise in wrangling data provided from a pdf into RStudio and out to Github.
 ## The data was acquired online from RPubs.com at this url: 
 ## https://rpubs.com/elizajv/datawranging_exercise_1
 
-##   I did not follow the excersize's directions since I did not have the original file to download and begin thier wrangling procedure.
-## Instead I copied the provided data from that page, pasted it to a Google Doc. and saved the document as a pdf to my local repository.
-## Afterwards I began to develope the code below practicing "regex" syntax.
-
-## Libraries used
+##   I did not follow the exercise's wrangling procedure since I did not have the original file to manipulate.
+## Instead I highlight-copied the printed data from that page, pasted it to a Google Doc. and saved the document as a pdf to my local repository.
+## Afterwards I began to develop the code below.  The goal is to practice extracting and manipulating the data into a useable format.
 
 library(readr)
 library(pdftools)
 library(stringr)
 
-## The data extracted from the pdf (uploaded to Github) made two separarate pages on several different lines.  I wanted to combine them.
+## The data extracted from the pdf (uploaded to Github) made two separate pages on several different lines.  I wanted to combine them.
 
 raw_text <- pdf_text("./SpringBoard Workshop Ex 1/Springboard Workshop Ex 1.pdf")  
 tab <- str_split(raw_text, "\n")
@@ -26,8 +24,7 @@ com_tab <- c(tab_1, tab_2) %>%
   str_replace_all("##","") %>%
   str_trim()
 
-
-## Extracted lines with column names.
+## Extracted lines with column names
 
 col_names_1 <- com_tab[1]
 col_names_2 <- com_tab[27]
@@ -43,8 +40,7 @@ col_names_2 <- col_names_2 %>%
 
 col_names <- c(col_names_1, col_names_2)
 
-
-## Minipulated raw data 
+## Manipulated raw data 
 
 raw_data_1 <- com_tab[2:26]
 raw_data_2 <- com_tab[28:52]
@@ -74,7 +70,6 @@ raw_data_2 <- raw_data_2 %>%
   str_replace_all("the neth", "The_Neth") %>%
   str_replace_all("s\\s", "s  ")%>%
   str_split("\\s{2}", simplify = TRUE)
-
 
 ## Combined into a data frame
 
