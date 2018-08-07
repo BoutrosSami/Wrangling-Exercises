@@ -1,4 +1,4 @@
-##   This is a an exercise in wrangling data provided from a pdf into RStudio and out to Github.
+##   This is a an exercise in wrangling data provided from a pdf into RStudio and out to GitHub.
 ## The data was acquired online from RPubs.com at this url: 
 ## https://rpubs.com/elizajv/datawranging_exercise_1
 
@@ -10,7 +10,7 @@ library(readr)
 library(pdftools)
 library(stringr)
 
-## The data extracted from the pdf (uploaded to Github) made two separate pages on several different lines.  I wanted to combine them.
+## The data extracted from the pdf (uploaded to GitHub as well) made two separate pages on several different lines.  I wanted to combine them.
 
 raw_text <- pdf_text("./SpringBoard Workshop Ex 1/Springboard Workshop Ex 1.pdf")  
 tab <- str_split(raw_text, "\n")
