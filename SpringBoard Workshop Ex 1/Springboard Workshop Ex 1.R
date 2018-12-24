@@ -1,10 +1,11 @@
-##   This is a an exercise in wrangling data provided from a pdf into RStudio and out to GitHub.
+##   This is a an exercise in wrangling data provided from a pdf into RStudio.
 ## The data was acquired online from RPubs.com at this url: 
 ## https://rpubs.com/elizajv/datawranging_exercise_1
 
-##   I did not follow the exercise's wrangling procedure since I did not have the original file to manipulate.
-## Instead I highlight-copied the printed data from that page, pasted it to a Google Doc. and saved the document as a pdf to my local repository.
-## Afterwards I began to develop the code below.  The goal is to practice extracting and manipulating the data into a useable format.
+##   I did not follow the exercise's wrangling procedure.  I copied the printed data, pasted it
+## to a Google Doc. and saved the document as a pdf to my local repository. Afterwards, I began
+## to develop the code below.  The goal is to practice extracting and manipulating the data into
+## a useable format.
 
 library(readr)
 library(pdftools)
