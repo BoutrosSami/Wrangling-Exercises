@@ -13,7 +13,7 @@ library(stringr)
 
 ## The data extracted from the pdf (uploaded to GitHub as well) made two separate pages on several different lines.  I wanted to combine them.
 
-raw_text <- pdf_text("./SpringBoard Workshop Ex 1/Springboard Workshop Ex 1.pdf")  
+raw_text <- pdf_text("./regex Exercise 1/regex Exercise 1.pdf")  
 tab <- str_split(raw_text, "\n")
 tab_1 <- tab[[1]][1:26]
 tab_2a <- tab[[1]][27:37]
