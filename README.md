@@ -1,2 +1,0 @@
-# Wrangling-Exercises
-Wrangling Exercises
